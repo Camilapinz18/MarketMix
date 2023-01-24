@@ -21,35 +21,36 @@
     <div id="app">
       <!-- /************************************************************/ -->
       <div class="container-sm">
-        <input
-          v-model="name"
-          type="text"
-          class="form-control"
-          placeholder="Enter your name"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-          
-        />
+        <h1>Sign Up</h1>
+        <form class="formContainer">
+          <input
+            v-model="name"
+            type="text"
+            class="form-control"
+            placeholder="Enter your name"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
 
-        <input
-          v-model="surname"
-          type="text"
-          class="form-control"
-          placeholder="Enter your surname"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-        />
+          <input
+            v-model="surname"
+            type="text"
+            class="form-control"
+            placeholder="Enter your surname"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
 
-        <input
-          v-model="username"
-          type="text"
-          class="form-control"
-          placeholder="Enter your username"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-        />
+          <input
+            v-model="username"
+            type="text"
+            class="form-control"
+            placeholder="Enter your username"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
 
-        <!-- <input
+          <!-- <input
           v-model="birthDate"
           type="date"
           class="form-control"
@@ -57,22 +58,27 @@
           aria-label="Username"
           aria-describedby="basic-addon1"
         /> -->
+        </form>
 
         <button @click="createNewUser" type="button" class="btn btn-success">
-          Guardar
+          Sign Up!
         </button>
 
-        <div v-if="emptyFields"  class="alert alert-danger" role="alert">
-            You must fill all the fields to continue
+        <div v-if="emptyFields" class="alert alert-danger" role="alert">
+          You must fill all the fields to continue
         </div>
 
-        <div v-if="userExists"  class="alert alert-danger" role="alert">
+        <div v-if="userExists" class="alert alert-danger" role="alert">
           The username is already registered. Try another
-      </div>
+        </div>
 
-      <div v-if="isSaved"  class="alert alert-success" role="alert">
-        The user was created successfully
-    </div>
+        <div v-if="isError" class="alert alert-warning" role="alert">
+          {{ message }}
+        </div>
+
+        <div v-if="isSaved" class="alert alert-success" role="alert">
+          The user was created successfully
+        </div>
       </div>
 
       <!-- /************************************************************/ -->
