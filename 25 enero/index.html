@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="mainContainer">
-        <div class="imageContainer">
-            <div class="discountContainer">
-                <img src="./images/discount.png" class="discountImage"/>
-                <span>25%dcto</span>
-            </div>
-            <img src="./images/milanesa.jpeg" class="itemImage"/>
-            <div class="itemName">
-                MILANESA DE POLLO • BEBIDA PERSONAL
-            </div>
+      <div class="imageContainer">
+        <div class="discountContainer">
+          <img src="./images/discount.png" class="discountImage" />
+          <span>25%dcto</span>
         </div>
 
-       <div class="itemDetails">
-        Milanesa de pollo apanada • arroz • papa francesa • ensalada • bebida personal
-       </div>
-       <div class="itemInfo">
-            <span class="beforeText">Antes</span>
-            <span class="beforePriceText">$32.950</span>
-            <span class="nowText">Ahora $22.950</span>
-            <button>Pedir</button>
-       </div>
+        <div class="onHover" id="'hoverMe">
+          <img src="./images/milanesa.jpeg" class="itemImage" />
+        </div>
+
+        <div class="onHoverText">
+          Milanesa de pollo apanada • arroz • papa francesa • ensalada • bebida
+          personal
+        </div>
+
+        <div class="itemName">MILANESA DE POLLO • BEBIDA PERSONAL</div>
+
+        <div class="itemDetails" id="toHide">
+          Milanesa de pollo apanada • arroz • papa francesa • ensalada • bebida
+          personal
+        </div>
+
+        <div class="itemInfo">
+          <span class="beforeText">Antes</span>
+          <span class="beforePriceText">$32.950</span>
+          <span class="nowText">Ahora $22.950</span>
+          <button>Pedir</button>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
