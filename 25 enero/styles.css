@@ -1,7 +1,30 @@
 @font-face {
     font-family: blackRaleway;
-    src: url(./fonts//Raleway-Black.ttf);
+    src: url('./Fuentes_PPC (1)/Raleway-Bold.ttf');
 }
+
+@font-face {
+    font-family: mediumRaleway;
+    src: url('./Fuentes_PPC (1)/Raleway-Medium.ttf');
+}
+
+@font-face {
+    font-family: regularRaleway;
+    src: url('./Fuentes_PPC (1)/Raleway-Regular.ttf');
+}
+
+@font-face {
+    font-family: lightRaleway;
+    src: url('./Fuentes_PPC (1)/Raleway-Light.ttf');
+}
+
+
+:root {
+    --primary: #E3220F
+}
+
+/***************************************/
+
 
 body {
     background-color: gray;
@@ -19,81 +42,88 @@ body {
     display: flex;
     flex-direction: column;
     width: min-content;
-    align-items: center;
-    justify-content: center;
     position: relative;
 }
 
 .discountContainer {
     display: flex;
     flex-direction: row;
-    position: absolute;
     z-index: 1;
-    /* background-color: cyan; */
     height: fit-content;
-    width: fit-content;
+    width: 30%;
     align-items: center;
+    position: absolute;
+    margin-top: 10%;
+    align-self: flex-end;
+   
 }
 
 .discountContainer span {
-    background-color: red;
+    background-color: var(--primary);
     color: white;
-    font-size: 25px;
-    padding: 10px;
-    width: 100%
+    font-size: 20px;
+    padding: 5px;
+    width: 100%;
+    height: 28px;
+    font-family: blackRaleway;
+   margin-left: 40px;
+   padding-left: 15px;
 }
 
 .discountImage {
-    background-color: red;
+    background-color: var(--primary);
     padding: 5px;
     border-radius: 50%;
     width: 25%;
-    position: relative;
+    position: absolute;
 }
 
 .itemImage {
-    font-family: blackRaleway;
+
     border-radius: 20px;
     position: relative;
 }
 
 .itemName {
     display: flex;
-    background-color: #E3220F;
-    border-radius: 10px;
+    background-color: var(--primary);
+    border-radius: 15px;
     text-align: center;
-    width: 80%;
+    width: 85%;
     height: 50px;
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: 20px;
+    font-size: 19px;
     position: absolute;
+    margin-top: 95%;
+    align-self: center;
+    font-family: blackRaleway;
 }
 
 .itemInfo {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 90%;
+    width: 85%;
     padding: 5px;
     align-self: center;
     justify-content: space-evenly;
-    /* background-color: yellow; */
     height: 50px;
 }
 
 .itemDetails {
-    /* background-color: blueviolet; */
-    width: 90%;
+    width: 80%;
     align-self: center;
     color: black;
-    font-size: 20px;
+    font-size: 18px;
     padding: 5px;
+    margin-top: 30px;
+    font-family: mediumRaleway;
 }
 
 .itemInfo button {
-    background-color: red;
+    background-color: var(--primary);
     border: none;
     border-radius: 5px;
     color: white;
@@ -104,11 +134,24 @@ body {
 
 .itemInfo button:hover {
     color: black;
-    background-color: #E3220F;
+    background-color: var(--primary);
     cursor: pointer;
 }
 
-.itemInfo h4 {
+.nowText {
+    font-family: blackRaleway;
+    font-size: 25px;
+    border-left: 2px solid var(--primary);
+    padding-left: 5px;
+}
+
+.beforeText {
+    font-family: regularRaleway;
+    color: var(--primary);
+}
+
+.beforePriceText {
+    font-family: regularRaleway;
+    color: var(--primary);
     text-decoration: line-through;
-    border-right: 2px solid #E3220F;
 }
