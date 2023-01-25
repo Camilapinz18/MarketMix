@@ -1,0 +1,114 @@
+@font-face {
+    font-family: blackRaleway;
+    src: url(./fonts//Raleway-Black.ttf);
+}
+
+body {
+    background-color: gray;
+}
+
+.mainContainer {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    height: fit-content;
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.discountContainer {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    z-index: 1;
+    /* background-color: cyan; */
+    height: fit-content;
+    width: fit-content;
+    align-items: center;
+}
+
+.discountContainer span {
+    background-color: red;
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+    width: 100%
+}
+
+.discountImage {
+    background-color: red;
+    padding: 5px;
+    border-radius: 50%;
+    width: 25%;
+    position: relative;
+}
+
+.itemImage {
+    font-family: blackRaleway;
+    border-radius: 20px;
+    position: relative;
+}
+
+.itemName {
+    display: flex;
+    background-color: #E3220F;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+}
+
+.itemInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    padding: 5px;
+    align-self: center;
+    justify-content: space-evenly;
+    /* background-color: yellow; */
+    height: 50px;
+}
+
+.itemDetails {
+    /* background-color: blueviolet; */
+    width: 90%;
+    align-self: center;
+    color: black;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.itemInfo button {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 30px 10px 30px;
+}
+
+.itemInfo button:hover {
+    color: black;
+    background-color: #E3220F;
+    cursor: pointer;
+}
+
+.itemInfo h4 {
+    text-decoration: line-through;
+    border-right: 2px solid #E3220F;
+}
