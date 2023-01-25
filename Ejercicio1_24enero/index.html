@@ -23,57 +23,64 @@
       <div class="container-sm">
         <h1>Sign Up</h1>
         <form class="formContainer">
-          <input
-            v-model="name"
-            type="text"
-            class="form-control"
-            placeholder="Enter your name"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
+          <div class="inputContainer">
+            <label for="nameInput" class="form-label">Name</label>
+            <input
+              v-model="name"
+              id="nameInput"
+              type="text"
+              class="form-control"
+              placeholder="Juan Pablo"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
 
-          <input
-            v-model="surname"
-            type="text"
-            class="form-control"
-            placeholder="Enter your surname"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
-
-          <input
-            v-model="username"
-            type="text"
-            class="form-control"
-            placeholder="Enter your username"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
-
-          <!-- <input
-          v-model="birthDate"
-          type="date"
-          class="form-control"
-          placeholder="John Doe"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-        /> -->
+          <div class="inputContainer">
+            <label for="surnameInput" class="form-label">Surname</label>
+            <input
+              v-model="surname"
+              id="surnameInput"
+              type="text"
+              class="form-control"
+              placeholder="Perez Garcia"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="inputContainer">
+            <label for="usernameInput" class="form-label">Username</label>
+            <input
+              v-model="username"
+              id="usernameInput"
+              type="text"
+              class="form-control"
+              placeholder="juanp10"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="inputContainer">
+            <label for="birthInput" class="form-label">Birth date</label>
+            <input
+              v-model="birthDate"
+              id="birthInput"
+              type="date"
+              class="form-control"
+              placeholder="John Doe"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+              min="1923-01-01" max={{actualDate}}
+            />
+          </div>
         </form>
 
         <button @click="createNewUser" type="button" class="btn btn-success">
           Sign Up!
         </button>
 
-        <div v-if="emptyFields" class="alert alert-danger" role="alert">
-          You must fill all the fields to continue
-        </div>
-
-        <div v-if="userExists" class="alert alert-danger" role="alert">
-          The username is already registered. Try another
-        </div>
-
         <div v-if="isError" class="alert alert-warning" role="alert">
-          {{ message }}
+          {{ errorMessage }}
         </div>
 
         <div v-if="isSaved" class="alert alert-success" role="alert">
