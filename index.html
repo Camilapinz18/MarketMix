@@ -12,7 +12,6 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="styles.css" />
 
     <title>My App</title>
   </head>
@@ -20,48 +19,79 @@
   <body>
     <div id="app">
       <div class="text-center">
-        <div class="container">
-          <form class="form-signin" @submit.prevent="login" v-if="isLogin">
-            <img
-              class="mb-4"
-              src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
-              alt=""
-              width="72"
-              height="72"
-            />
-            <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
-            <label for="username" class="sr-only">Username</label>
-            <input
-              type="text"
-              id="username"
-              class="form-control"
-              placeholder="Username"
-              required
-              autofocus
-              v-model="username"
-            />
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input
-              type="password"
-              id="inputPassword"
-              class="form-control"
-              placeholder="Password"
-              required
-              v-model="password"
-            />
+        <div class="container bg-primary-subtle">
+          <div class="">
+            <form class="form-signin" @submit.prevent="login" v-if="isLogin">
+              <img
+                class="mb-4 rounded-5"
+                src="https://scontent.fbog11-1.fna.fbcdn.net/v/t39.30808-6/291369460_465013808960960_1536020272193737057_n.png?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeG7QlEp-XaZWi6sA016xGoIqReN56GlWRypF43noaVZHDgtaF-vLz6RYf7zyqAOeKnMdVQLwQbcKGVrrKS_U2Fs&_nc_ohc=RuDdrD61LekAX-09NTJ&tn=Shmx22MxCeV2-V7U&_nc_ht=scontent.fbog11-1.fna&oh=00_AfAbZ_gBPHlAILa7M7Oo7I7wCs0RIzBjFjOo9YJ-lYbMAQ&oe=63F07DD8"
+                alt=""
+                width="200"
+                height="200"
+              />
+              <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
+              <label for="username" class="sr-only">Username</label>
+              <input
+                type="text"
+                id="username"
+                class="form-control"
+                placeholder="Username"
+                required
+                autofocus
+                v-model="username"
+              />
+              <label for="inputPassword" class="sr-only">Password</label>
+              <input
+                type="password"
+                id="inputPassword"
+                class="form-control"
+                placeholder="Password"
+                required
+                v-model="password"
+              />
 
-            <button
-              @click="login"
-              class="btn btn-lg btn-primary btn-block mt-3"
-              type="submit"
-            >
-              Sign in
-            </button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-          </form>
+              <button
+                @click="login"
+                class="btn btn-lg btn-primary btn-block mt-3"
+                type="submit"
+              >
+               Login
+              </button>
+             
+            </form>
+          </div>
 
-          <div v-if="isList">
-            <table class="table">
+          <!-- USERS DATABASE -->
+
+          <div v-if="isList" class="mt-5">
+            <h1>USER DATABASE</h1>
+            <div class="row mt-5">
+              <div class="col-6">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  v-model="genderSelected"
+                  v-on:change="filterByGender"
+                >
+                  <option selected value="all">All</option>
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                </select>
+              </div>
+
+              <div class="col-6">
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Filter"
+                    aria-label="Filter"
+                    v-model="quantity"
+                  />
+                </div>
+              </div>
+            </div>
+            <table class="table mt-3">
               <thead>
                 <tr>
                   <th scope="col">Photo</th>
@@ -74,18 +104,20 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="user in users">
+                <tr v-for="user in usersToShow.slice(0,quantity)">
                   <td>
-                    <img class="user_image" :src="user.country" alt="photo" />
+                    <img class="user_image" :src="user.photo" alt="photo" />
                   </td>
                   <td>{{ user.name }}</td>
                   <td>{{ user.age }}</td>
-
+                  <td>
+                    <!-- <img class="user_image" :src="user.country" alt="photo" /> -->
+                  </td>
                   <td>{{ user.email }}</td>
                   <td>{{ user.phone }}</td>
                   <td>
                     <button
-                      @click="deleteUser"
+                      @click="deleteUser(user)"
                       type="button"
                       class="btn btn-danger"
                     >
@@ -95,9 +127,6 @@
                 </tr>
               </tbody>
             </table>
-            <button @click="fetchData" type="button" class="btn btn-primary">
-              Fetch Users
-            </button>
           </div>
         </div>
       </div>
