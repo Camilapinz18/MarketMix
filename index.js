@@ -33,6 +33,7 @@ const app = Vue.createApp({
             this.isLogin = false
             this.isList = true
             localStorage.setItem('userLogged', userToLogin.username)
+            location.reload()
           } else {
             alert('Wrong password')
           }
@@ -41,7 +42,7 @@ const app = Vue.createApp({
         }
         console.log('UserToLogin', userToLogin)
       }
-      location.reload()
+     
     },
     loggedUserVerification () {
       if (
@@ -66,6 +67,19 @@ const app = Vue.createApp({
         this.users = toUpdateLocalUsers
       }
     },
+    async getFlag () {
+      console.log('countryNameFlag', this.users[0].country)
+      this.users.map(async user => {
+        await fetch(user.country)
+          .then(response => response.json())
+          .then(data => {
+            user.country = data[0].flags.png
+          })
+          .then(() => {
+            localStorage.setItem('users', JSON.stringify(this.users))
+          })
+      })
+    },
     async fetchData () {
       if (this.users.length <= 15 && this.users.length > 1) {
         console.log('Ya hay usuarios')
@@ -78,7 +92,9 @@ const app = Vue.createApp({
                 photo: user.picture.thumbnail,
                 name: `${user.name.first + ' ' + user.name.last}`,
                 age: user.dob.age,
-                country: `https://countryflagsapi.com/png/${user.location.country}`,
+
+                country: `https://restcountries.com/v3.1/name/${user.location.country}?fields=flags`,
+
                 email: user.email,
                 phone: user.cell,
                 username: user.login.username,
@@ -87,40 +103,57 @@ const app = Vue.createApp({
               })
             })
           )
-        //this.getCountryFlag()
-        localStorage.setItem('users', JSON.stringify(this.users))
 
+        this.getFlag()
         console.log('length', this.users.length)
       }
     },
     deleteUser (userToDelete) {
       console.log('delete', userToDelete.name)
       //Delete in this.users
-      this.users = this.users.filter(user => {
-        return user.name !== userToDelete.name
-      })
+      if (confirm('Do you want to delete the user?')) {
+        console.log('deleted')
+        this.users = this.users.filter(user => {
+          return user.name !== userToDelete.name
+        })
 
-      this.filterByGender()
+        this.filterByGender()
 
-      localStorage.setItem('users', JSON.stringify(this.users))
+        localStorage.setItem('users', JSON.stringify(this.users))
+      } else {
+        console.log('not deleted')
+      }
     },
     filterByGender () {
       console.log('selected', this.genderSelected)
       this.quantity = this.users.length
-      console.log("QQQQ",this.quantity)
+      console.log('QQQQ', this.quantity)
+
+      const logged = localStorage.getItem('userLogged')
+      console.log('LLOGEDD', logged)
+
       this.usersToShow = this.users.filter(user => {
         if (this.genderSelected === 'all') {
-          return user
+          return user.username !== logged
         } else if (this.genderSelected === 'female') {
-          return user.gender === 'female'
+          if (user.username !== logged) {
+            return user.gender === 'female'
+          }
         } else if (this.genderSelected === 'male') {
-          return user.gender === 'male'
+          if (user.username !== logged) {
+            return user.gender === 'male'
+          }
         }
       })
 
       console.log('usersToShow', this.usersToShow)
       this.usersToShow = this.usersToShow
       localStorage.setItem('users', JSON.stringify(this.users))
+    },
+    logout () {
+      this.isList=false
+      this.isLogin=true
+      localStorage.removeItem('userLogged')
     }
   },
 
@@ -129,6 +162,7 @@ const app = Vue.createApp({
     this.localStorageVerification()
     this.loggedUserVerification()
     this.fetchData()
+
     this.filterByGender()
   }
 })
