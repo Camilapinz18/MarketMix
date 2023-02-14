@@ -1,6 +1,0 @@
-Fuentes a usar en el proyecto:
-
-Raleway-Bold.ttf
-Raleway-Medium.ttf
-Raleway-Regular.ttf
-Raleway-Light.ttf
